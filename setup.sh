@@ -72,6 +72,13 @@ then
     sudo npm i -g pm2
 fi
 
+# install docker
+if ! command -v docker &> /dev/null
+then
+    echo "docker is not installed, installing docker"
+    curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
+fi
+
 # start docker containers
 docker-compose --file ./docker-compose.yml up -d
 
