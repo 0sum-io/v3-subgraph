@@ -90,17 +90,17 @@ fi
 
 # start docker containers
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    docker-compose --file ./docker-compose.yml up -d
+    docker-compose up -d
 else
-    sudo docker compose --file ./docker-compose.yml up -d
+    sudo docker compose up -d
 fi
 
 # pause 60 seconds
 sleep 60
 
 # deploy subgraph
-yarn && \
-    yarn codegen && \
-    yarn build && \
-    yarn create-local && \
-    yarn deploy-local
+sudo yarn && \
+    sudo yarn codegen && \
+    sudo yarn build && \
+    sudo yarn create-local && \
+    sudo yarn deploy-local
