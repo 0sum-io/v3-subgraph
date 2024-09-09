@@ -1,0 +1,10 @@
+build/
+node_modules/
+src/types/
+.DS_STORE
+yarn-error.log
+data/
+
+docker-compose.yml
+subgraph.yaml
+src/utils/constants.ts
