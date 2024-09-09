@@ -8,6 +8,12 @@ NONFUNGIBLE_POSITION_MANAGER_ADDRESS="0xd647b2D80b48e93613Aa6982b85f8909578b4829
 WETH_ADDRESS="0xbe4c021f8fd2be76dbe9da6a000221ac6893aa3d" # lowercased
 USD_TOKEN_ADDRESS="0x4f957e108130052849bf81151c6e4c51d5187de1" # lowercased
 USDC_WETH_03_POOL="0xbaa50b4a69cd49c2947cc2f94f5f8d7b84676a79" # lowercased
+# if darwin, set port to 8000
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    PORT=8000
+else
+    PORT=80
+fi
 
 # Function to run sed command based on OS
 run_sed() {
@@ -22,6 +28,9 @@ run_sed() {
 
 # Replace text in ./docker-compose.yml with RPC_URL
 run_sed "s|<RPC_URL>|$RPC_URL|g" "./docker-compose.yml"
+
+# Replace text in ./docker-compose.yml with PORT
+run_sed "s|<PORT>|$PORT|g" "./docker-compose.yml"
 
 # Replace text in ./subgraph.yaml with FACTORY_ADDRESS
 run_sed "s|<V3_CORE_FACTORY_ADDRESS>|$V3_CORE_FACTORY_ADDRESS|g" "./subgraph.yaml"
