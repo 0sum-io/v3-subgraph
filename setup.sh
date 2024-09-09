@@ -9,29 +9,40 @@ WETH_ADDRESS="0xbe4c021f8fd2be76dbe9da6a000221ac6893aa3d" # lowercased
 USD_TOKEN_ADDRESS="0x4f957e108130052849bf81151c6e4c51d5187de1" # lowercased
 USDC_WETH_03_POOL="0xbaa50b4a69cd49c2947cc2f94f5f8d7b84676a79" # lowercased
 
-# replace text in ./docker-compose.yml with RPC_URL
-sed -i '' "s|<RPC_URL>|$RPC_URL|g" "./docker-compose.yml"
+# Function to run sed command based on OS
+run_sed() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        sed -i '' "$1" "$2"
+    else
+        # Linux and others
+        sed -i "$1" "$2"
+    fi
+}
 
-# replace text in ./subgraph.yaml with FACTORY_ADDRESS
-sed -i '' "s|<V3_CORE_FACTORY_ADDRESS>|$V3_CORE_FACTORY_ADDRESS|g" "./subgraph.yaml"
+# Replace text in ./docker-compose.yml with RPC_URL
+run_sed "s|<RPC_URL>|$RPC_URL|g" "./docker-compose.yml"
 
-# replace text in ./subgraph.yaml with START_BLOCK
-sed -i '' "s|<START_BLOCK>|$START_BLOCK|g" "./subgraph.yaml"
+# Replace text in ./subgraph.yaml with FACTORY_ADDRESS
+run_sed "s|<V3_CORE_FACTORY_ADDRESS>|$V3_CORE_FACTORY_ADDRESS|g" "./subgraph.yaml"
 
-# replace text in ./subgraph.yaml with NONFUNGIBLE_POSITION_MANAGER_ADDRESS
-sed -i '' "s|<NONFUNGIBLE_POSITION_MANAGER_ADDRESS>|$NONFUNGIBLE_POSITION_MANAGER_ADDRESS|g" "./subgraph.yaml"
+# Replace text in ./subgraph.yaml with START_BLOCK
+run_sed "s|<START_BLOCK>|$START_BLOCK|g" "./subgraph.yaml"
 
-# replace text in ./src/utils/constants.ts with V3_CORE_FACTORY_ADDRESS
-sed -i '' "s|<V3_CORE_FACTORY_ADDRESS>|$V3_CORE_FACTORY_ADDRESS|g" "./src/utils/constants.ts"
+# Replace text in ./subgraph.yaml with NONFUNGIBLE_POSITION_MANAGER_ADDRESS
+run_sed "s|<NONFUNGIBLE_POSITION_MANAGER_ADDRESS>|$NONFUNGIBLE_POSITION_MANAGER_ADDRESS|g" "./subgraph.yaml"
 
-# replace text in ./src/utils/constants.ts with WETH_ADDRESS
-sed -i '' "s|<WETH_ADDRESS>|$WETH_ADDRESS|g" "./src/utils/constants.ts"
+# Replace text in ./src/utils/constants.ts with V3_CORE_FACTORY_ADDRESS
+run_sed "s|<V3_CORE_FACTORY_ADDRESS>|$V3_CORE_FACTORY_ADDRESS|g" "./src/utils/constants.ts"
 
-# replace text in ./src/utils/constants.ts with USD_TOKEN_ADDRESS
-sed -i '' "s|<USD_TOKEN_ADDRESS>|$USD_TOKEN_ADDRESS|g" "./src/utils/constants.ts"
+# Replace text in ./src/utils/constants.ts with WETH_ADDRESS
+run_sed "s|<WETH_ADDRESS>|$WETH_ADDRESS|g" "./src/utils/constants.ts"
 
-# replace text in ./src/utils/constants.ts with USDC_WETH_03_POOL
-sed -i '' "s|<USDC_WETH_03_POOL>|$USDC_WETH_03_POOL|g" "./src/utils/constants.ts"
+# Replace text in ./src/utils/constants.ts with USD_TOKEN_ADDRESS
+run_sed "s|<USD_TOKEN_ADDRESS>|$USD_TOKEN_ADDRESS|g" "./src/utils/constants.ts"
+
+# Replace text in ./src/utils/constants.ts with USDC_WETH_03_POOL
+run_sed "s|<USDC_WETH_03_POOL>|$USDC_WETH_03_POOL|g" "./src/utils/constants.ts"
 
 # install nodejs
 if ! command -v node &> /dev/null
