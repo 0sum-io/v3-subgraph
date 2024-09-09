@@ -80,7 +80,11 @@ then
 fi
 
 # start docker containers
-docker-compose --file ./docker-compose.yml up -d
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    docker-compose --file ./docker-compose.yml up -d
+else
+    sudo docker compose --file ./docker-compose.yml up -d
+fi
 
 # pause 60 seconds
 sleep 60
