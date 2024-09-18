@@ -106,5 +106,5 @@ echo $"\n\n yarn..."
 sudo yarn && \
     sudo yarn codegen && \
     sudo yarn build && \
-    sudo yarn create-local && \
-    sudo yarn deploy-local
+    sudo yarn create-local --access-token ad71fa84f01610bf913efceda5fd7bc3 && \
+    sudo yarn deploy-local --access-token ad71fa84f01610bf913efceda5fd7bc3
