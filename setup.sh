@@ -57,39 +57,40 @@ run_sed "s|<USDC_WETH_03_POOL>|$USDC_WETH_03_POOL|g" "./src/utils/constants.ts"
 # install nodejs
 if ! command -v node &> /dev/null
 then
-    echo "nodejs is not installed, installing nodejs"
+    echo $"\n\n nodejs is not installed, installing nodejs"
     sudo apt install nodejs
 fi
 
 # install npm
 if ! command -v npm &> /dev/null
 then
-    echo "npm is not installed, installing npm"
+    echo $"\n\n npm is not installed, installing npm"
     sudo apt install npm
 fi
 
 # install yarn 
 if ! command -v yarn &> /dev/null
 then
-    echo "yarn is not installed, installing yarn"
+    echo $"\n\n yarn is not installed, installing yarn"
     sudo npm i -g yarn
 fi
 
 # install pm2
 if ! command -v pm2 &> /dev/null
 then
-    echo "pm2 is not installed, installing pm2"
+    echo $"\n\n pm2 is not installed, installing pm2"
     sudo npm i -g pm2
 fi
 
 # install docker
 if ! command -v docker &> /dev/null
 then
-    echo "docker is not installed, installing docker"
+    echo $"\n\n docker is not installed, installing docker"
     curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
 fi
 
 # start docker containers
+echo $"\n\n starting docker containers"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     docker-compose up -d
 else
@@ -97,9 +98,11 @@ else
 fi
 
 # pause 60 seconds
+echo $"\n\n pausing..."
 sleep 60
 
 # deploy subgraph
+echo $"\n\n yarn..."
 sudo yarn && \
     sudo yarn codegen && \
     sudo yarn build && \
