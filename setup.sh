@@ -97,7 +97,7 @@ else
     sudo docker compose up -d
 fi
 
-# pause 60 seconds
+# pause seconds
 echo "pausing..."
 sleep 300
 
