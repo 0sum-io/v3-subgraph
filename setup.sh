@@ -99,7 +99,7 @@ fi
 
 # pause 60 seconds
 echo "pausing..."
-sleep 60
+sleep 300
 
 # deploy subgraph
 echo $"yarn..."
